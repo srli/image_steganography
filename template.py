@@ -11,7 +11,7 @@ blue_template = template_image.split()[2]
 
 x_size = template_image.size[0]
 y_size = template_image.size[1]
-print "img size: ", x_size, y_size
+# print "img size: ", x_size, y_size
 
 #text draw
 text_to_encode = "hello world"
@@ -28,17 +28,13 @@ pixels = encoded_image.load()
 for i in range(x_size):
     for j in range(y_size):
         red_template_pix = bin(red_template.getpixel((i,j)))
+        old_pix = red_template.getpixel((i,j))
         tencode_pix = bin(bw_encode.getpixel((i,j)))
 
         if tencode_pix[-1] == '1':
-            red_template_pix[-1] == '1'
+            red_template_pix = red_template_pix[:-1] + '1'
         else:
-            red_template_pix[-1] == '0'
-
-        if i+j == 0:
-            print red_template_pix
-            print int(red_template_pix, 2)
-            print bin(int(red_template_pix, 2))[-1] == '0'
+            red_template_pix = red_template_pix[:-1] + '0'
         pixels[i, j] = (int(red_template_pix, 2), green_template.getpixel((i,j)), blue_template.getpixel((i,j)))
 
 encoded_image.save("encoded.png")
@@ -50,15 +46,11 @@ dec = Image.new("RGB", (x_size, y_size))
 pixels = dec.load()
 for i in range(x_size):
     for j in range(y_size):
-        # if i+j == 250:
-        #     print red_img.getpixel((i,j))
-        #     #print bin(red_img.getpixel((i,j)))
-        #     print bin(red_img.getpixel((i,j)))[-1]
-
-        if bin(encoded_channel.getpixel((i, j)))[-1] == '0':
+        if bin(encoded_channel.getpixel((i, j)))[-1] == '1':
             pixels[i, j] = (255, 255, 255)
         else:
             pixels[i, j] = (0,0,0)
+
 dec.save("jw.png")
 
 
