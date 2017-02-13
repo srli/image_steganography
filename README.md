@@ -25,7 +25,7 @@ if you take the first letter of every word. Steganography is really handy to use
 There are multiple ways to hide things within other things, but today we will be working with images. Typical images are composed of three color channels (RGB), with pixel values of 0-255 for each pixel. So a pixel with the value (255,255,255) would be entirely white while (0,0,0) would be black. The upper range is 255 because it is the largest value that can be represented by an 8 bit binary number. Binary is a base-two paradigm, in contrast to decimal which is in base-ten.
 
 Here's an example of counting in binary from 0 to 32
-![Binary counter. Source: Wikipedia](https://en.wikipedia.org/wiki/Binary_number#/media/File:Binary_counter.gif)
+![Binary counter. Source: Wikipedia](https://commons.wikimedia.org/wiki/File:Binary_counter.gif#/media/File:Binary_counter.gif)
 
 So if we wanted to convert the number `10001011` from binary into decimal, it would look something like:
 
