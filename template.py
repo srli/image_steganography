@@ -1,6 +1,5 @@
 from PIL import Image, ImageFont, ImageDraw
-
-
+import textwrap
 
 #samoyed from: http://puppytoob.com/wp-content/uploads/sites/3/2015/01/samoyed.jpg
 #opening image, preparing channel
@@ -14,11 +13,15 @@ y_size = template_image.size[1]
 # print "img size: ", x_size, y_size
 
 #text draw
-text_to_encode = "hello world"
+text_to_encode = "According to all known laws of aviation, there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible."
+
 image_to_encode = Image.new("RGB", (x_size, y_size))
 font = ImageFont.load_default().font
 d = ImageDraw.Draw(image_to_encode)
-d.text((10,10), text_to_encode, font=font)
+margin = offset = 10
+for line in textwrap.wrap(text_to_encode, width=60):
+    d.text((margin,offset), line, font=font)
+    offset += 10
 bw_encode = image_to_encode.convert('1')
 bw_encode.save("w2.png")
 
@@ -38,7 +41,6 @@ for i in range(x_size):
         pixels[i, j] = (int(red_template_pix, 2), green_template.getpixel((i,j)), blue_template.getpixel((i,j)))
 
 encoded_image.save("encoded.png")
-
 
 #decode portion
 encoded_channel = encoded_image.split()[0]
