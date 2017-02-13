@@ -22,18 +22,23 @@ if you take the first letter of every word. Steganography is really handy to use
 
 ## The value of one pixel
 
-There are multiple ways to hide things within other things, but today we will be working with images. Typical images are composed of three color channels (RGB), with pixel values of 0-255 for each pixel. So a pixel with the value (255,255,255) would be entirely white while (0,0,0) would be black. The upper range is 255 because it is the largest value that can be represented by an 8 bit binary number. Binary is a base-two paradigm, in contrast to decimal which is in base-ten.
-
-Here's an example of counting in binary from 0 to 32
-![Binary counter. Source: Wikipedia](https://commons.wikimedia.org/wiki/File:Binary_counter.gif#/media/File:Binary_counter.gif)
+There are multiple ways to hide things within other things, but today we will be working with images. Typical images are composed of three color channels (RGB), with pixel values of 0-255 for each pixel. So a pixel with the value (255,255,255) would be entirely white while (0,0,0) would be black. The upper range is 255 because it is the largest value that can be represented by an 8 bit binary number. Binary is a base-two paradigm, in contrast to decimal which is in base-ten, which means you calculate the value of a binary number by summing the 2s exponent of each place where a 1 appears.
 
 So if we wanted to convert the number `10001011` from binary into decimal, it would look something like:
 
 `2^8 + 2^4 + 2^2 + 2^1 = 139`
 
-You can test this out with any [RGB color wheel](http://www.colorspire.com/rgb-color-wheel/) to get a sense of
+From this, you can quickly see that the leftmost bit place matters a lot more than rightmost bit because that rightmost bit only modifies the value of the number by 1. To test:
+`10001011 = 139` while `00001011 = 11`
+`10001011 = 139` while `10001010 = 138`
 
+Because of this, we describe the leftmost bit as the "most significant bit"(MSB) while the rightmost bit is called the "least significant bit"(LSB).
 
+Since changing the LSB doesn't drastically change the overall value of the of 8 bit number, we can hide our data there without modifying a source image in any detectable sort of way. You can test this out with any [RGB color wheel](http://www.colorspire.com/rgb-color-wheel/) to get a sense of how little difference there is between a color like (150, 50, 50) and (151, 50, 50)
+
+## Decoding the sample image
+
+Provided in this toolbox is a picture of a cute dog. This dog is also 
 ## Completing the Toolbox Exercise
 
 To turn in your assignment, push your code and screenshots to GitHub and
